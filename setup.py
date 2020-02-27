@@ -1,6 +1,6 @@
 from setuptools import setup
 from setuptools import Extension
-#from Cython.Build import cythonize
+from Cython.Build import cythonize
 
 from codecs import open
 from os import path
@@ -47,9 +47,10 @@ setup(
     keywords='Machine Learning Biclustering Fabia',
 
     packages=['fabia'],
-    #ext_modules = cythonize([Extension("fabia._fabia", ["fabia/_fabia.pyx"], include_dirs=[np.get_include()],)]),
-    ext_modules = [Extension("fabia._fabia", ["fabia/_fabia.c"],
-                             include_dirs=[np.get_include()])],
+    ext_modules = cythonize([Extension("fabia._fabia", ["fabia/_fabia.pyx"],
+                                       include_dirs=[np.get_include()],)]),
+    #ext_modules = [Extension("fabia._fabia", ["fabia/_fabia.c"],
+    #                         include_dirs=[np.get_include()])],
 
     install_requires=["scipy>=0.16.0", "scikit-learn>=0.16.1"],
 )
